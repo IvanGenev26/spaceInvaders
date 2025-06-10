@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "raylib.h"
-#include <cstdlib>
 
 Game::Game() : player(40, 55), score(0), level(1), running(true), frameCounter(0) {
     initializeEnemies();
@@ -45,7 +44,6 @@ void Game::update() {
     checkCollisions();
     levelCheck();
 
-    // Respawn enemies if all are destroyed
     if (enemies.empty()) {
         initializeEnemies();
     }
@@ -97,7 +95,6 @@ void Game::render() {
     // Larger player size
     DrawRectangle(player.getX() * 10, player.getY() * 10, 16, 16, GREEN);
 
-    // Larger enemies with correct colors
     for (auto e : enemies) {
         Color color;
         char symbol = ((GameObject*)e)->getSymbol();
@@ -111,7 +108,6 @@ void Game::render() {
         DrawCircle(e->getX() * 10 + 8, e->getY() * 10 + 8, 8, color);
     }
 
-    // Bullets unchanged
     for (auto b : bullets) DrawRectangle(b->getX() * 10 + 4, b->getY() * 10, 2, 8, WHITE);
     for (auto eb : enemyBullets) DrawRectangle(eb->getX() * 10 + 4, eb->getY() * 10, 2, 8, RED);
 

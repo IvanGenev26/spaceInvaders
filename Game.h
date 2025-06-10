@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "Player.h"
-#include "EnemyTypes.h"
 #include "Bullet.h"
 
 class Game {
